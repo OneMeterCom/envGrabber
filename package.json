@@ -1,0 +1,35 @@
+{
+  "name": "envgrabber",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "A tool to retrieve .env files from a Google Storage bucket before deployment",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "nodemon": "^1.17.5",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.13.6"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
+    "dotenv": "^6.0.0",
+    "yargs": "^11.0.0"
+  },
+  "scripts": {
+    "lint": "echo \"Linting code\" && eslint --fix . && echo \"Linting done\""
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "bin": {
+    "envgrabber": "./index.js"
+  },
+  "engine": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/OneMeterCom/envGrabber.git"
+  }
+}

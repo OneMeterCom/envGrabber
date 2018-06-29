@@ -1,0 +1,25 @@
+{
+	"env": {
+			"es6": true,
+			"node": true,
+			"mocha": true
+	},
+	"plugins": ["prettier"],
+	"rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "error",
+    "prefer-const": "error",
+    "no-const-assign": "error",
+    "prefer-destructuring": "error",
+    "prefer-arrow-callback": "error",
+    "no-var": "error",
+    "one-var": ["error", "never"]
+	},
+	"parserOptions": {
+			"sourceType": "module",
+			"ecmaVersion": 2017,
+			"ecmaFeatures": {
+				"experimentalObjectRestSpread": true
+		}
+	}
+}
