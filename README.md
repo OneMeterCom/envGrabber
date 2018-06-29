@@ -12,6 +12,6 @@ yarn add --dev envgrabber
 at your package.json
 ```
 {
-  "postinstall": "envgrabber -b my_bucket_name -f .env"
+  "prestart": "envgrabber -b my_bucket_name -f .env"
 }
 ```
