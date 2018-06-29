@@ -6,7 +6,7 @@
 
 ## Usage :
 ```
-yarn add --dev envgrabber
+yarn add envgrabber
 ```
 
 at your package.json
@@ -15,3 +15,13 @@ at your package.json
   "prestart": "envgrabber -b my_bucket_name -f .env"
 }
 ```
+
+or use directly in your app
+````javascript
+const envGrabber = require('envgrabber');
+
+await envGrabber({
+  bucketName: 'my_super_secret_bucket',
+  fileName: '.env', // optional, '.env' is assumed.
+});
+````

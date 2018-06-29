@@ -11,9 +11,9 @@
     "pre-commit": "^1.2.2",
     "prettier": "^1.13.6"
   },
+  "main": "index.js",
   "dependencies": {
     "@google-cloud/storage": "^1.7.0",
-    "dotenv": "^6.0.0",
     "yargs": "^11.0.0"
   },
   "scripts": {
@@ -23,7 +23,7 @@
     "lint"
   ],
   "bin": {
-    "envgrabber": "./index.js"
+    "envgrabber": "./cli.js"
   },
   "engine": {
     "node": ">=8"
