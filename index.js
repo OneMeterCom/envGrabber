@@ -1,5 +1,6 @@
 'use strict';
 const gcs = require('@google-cloud/storage')();
+const byline = require('byline');
 
 /**
  * Grab the env file from a Google Storage bucket and set the environment variables.
@@ -12,10 +13,29 @@ const gcs = require('@google-cloud/storage')();
  * @returns {Promise<void>}
  */
 function envGrabber({ bucketName, fileName = '.env' }) {
-  return gcs
-    .bucket(bucketName)
-    .file(fileName)
-    .download({ destination: fileName });
+  return new Promise(async resolve => {
+    const result = [];
+    const file = await gcs
+      .bucket(bucketName)
+      .file(fileName)
+      .createReadStream();
+
+    const lineStream = byline.createStream(file);
+    lineStream.on('data', line => {
+      const [key, value] = line
+        .toString()
+        .replace(/"|'/g, '')
+        .split('=');
+      result.push(key);
+      process.env[key] = value;
+    });
+    lineStream.on('end', () => {
+      console.log(
+        `The following environment variables were set: ${result.join(', ')}`,
+      );
+      resolve();
+    });
+  });
 }
 
 module.exports = envGrabber;
