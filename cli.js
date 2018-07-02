@@ -16,7 +16,6 @@ const { b: bucketName, f: fileName = '.env' } = argv
 (async () => {
   try {
     await envGrabber({ bucketName, fileName });
-    console.log(process.env.BUNDLE === 'production');
   } catch (error) {
     console.log(error.message);
     process.exitCode = 1;
