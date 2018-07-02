@@ -24,8 +24,9 @@ function envGrabber({ bucketName, fileName = '.env' }) {
     lineStream.on('data', line => {
       const [key, value] = line
         .toString()
-        .replace(/"|'/g, '')
-        .split('=');
+        .replace(/['"]+/g, '')
+        .replace(/\=/, '&')
+        .split('&');
       result.push(key);
       process.env[key] = value;
     });
