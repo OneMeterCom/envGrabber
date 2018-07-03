@@ -1,6 +1,7 @@
 'use strict';
 const gcs = require('@google-cloud/storage')();
 const byline = require('byline');
+const cmd = require('node-cmd');
 
 /**
  * Grab the env file from a Google Storage bucket and set the environment variables.
@@ -12,7 +13,7 @@ const byline = require('byline');
  * @param {string} [options.fileName=.env] - The name of the env file.
  * @returns {Promise<void>}
  */
-function envGrabber({ bucketName, fileName = '.env' }) {
+function envGrabber({ bucketName, fileName = '.env', withCmd }) {
   return new Promise(async resolve => {
     const result = [];
     const file = await gcs
@@ -28,7 +29,11 @@ function envGrabber({ bucketName, fileName = '.env' }) {
         .replace(/\=/, '&')
         .split('&');
       result.push(key);
-      process.env[key] = value;
+      if (withCmd) {
+        cmd.get(`export ${key}=${value}`);
+      } else {
+        process.env[key] = value;
+      }
     });
     lineStream.on('end', () => {
       console.log(
