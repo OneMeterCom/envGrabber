@@ -1,7 +1,7 @@
 {
   "name": "envgrabber",
   "license": "MIT",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A tool to retrieve .env files from a Google Storage bucket before deployment",
   "devDependencies": {
     "eslint": "^5.0.1",
