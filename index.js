@@ -25,8 +25,8 @@ function envGrabber({ bucketName, fileName = '.env' }) {
       const [key, value] = line
         .toString()
         .replace(/['"]+/g, '')
-        .replace(/\=/, '¬')
-        .split('¬');
+        .replace(/\=/, '¬¬¬')
+        .split('¬¬¬');
       result.push(key);
       process.env[key] = value;
     });
